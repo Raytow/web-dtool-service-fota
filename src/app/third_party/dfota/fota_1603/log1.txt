@@ -1,0 +1,165 @@
+verion: 3.0 , Mar 18 2021 / 19:12:28
+./adiff_lnx
+../a/system.img
+../b/system.img
+gg.bin
+fota_firmwar_flag len = 4096
+ASR_OTA_HEADER len = 2048
+[CP ] stop decompress as no further RW_CPZ_ detected
+[CP ] stop decompress as no further RW_CPZ_ detected
+Old DDR_RO start addr [80042000]
+New DDR_RO start addr [80042000]
+Old DDR_RO	 end addr [80042000]
+New DDR_RO	 end addr [80042000]
+Old DDR_RO	size [00000000]
+New DDR_RO	size [00000000]
+Old NON_OTA start addr [80355000]
+New NON_OTA start addr [80357000]
+Old NON_OTA   end addr [803a7000]
+New NON_OTA   end addr [803ab000]
+Old NON_OTA  size [00052000]
+New NON_OTA  size [00054000]
+**********************PRE RO***************************
+The oldPreRoSize size [0001e000]
+The newPreRoSize size [0001e000]
+PRE_RO diff size 00000200
+PRE_RO old CheckSum [3526858b]
+PRE_RO new CheckSum [49f0b411]
+PRE_RO diff ImagesCheckSum [40fb1fdb]
+**********************PRE DDR RW***************************
+The oldPre_DDR_RW_Size size [00011000]
+The newPre_DDR_RW_Size size [00011000]
+PRE_DDR_RW diff size 00000d64
+PRE_DDR_RW old CheckSum [22672a42]
+PRE_DDR_RW new CheckSum [0fbc6701]
+old flash address[80042000]
+new flash address[80042000]
+**********************DDR RW***************************
+The old_DDR_RW_Size size [00007000]
+The new_DDR_RW_Size size [00007000]
+The old_DDR_RW_region_info RW_REGION_COMPRESSED_ADDR [80053000]
+The new_DDR_RW_region_info RW_REGION_COMPRESSED_ADDR [80053000]
+The old_DDR_RW_Size_Unpress [00038edc]
+The new_DDR_RW_Size_Unpress [00038efc]
+DDR_RW diff size 000008a8
+DDR_RW old CheckSum [8b065638]
+DDR_RW new CheckSum [e91dd417]
+old flash address[80053000]
+new flash address[80053000]
+**********************PS_NCAH***************************
+The old_PS_NCAH_Sizesize [00001000]
+The new_PS_NCAH_Size size [00001000]
+The old RW_REGION_LENGTH [00001000]
+The new RW_REGION_LENGTH [00001000]
+The old_PS_NCAH_region_info RW_REGION_COMPRESSED_ADDR [8005a000]
+The new_PS_NCAH_region_info RW_REGION_COMPRESSED_ADDR [8005a000]
+The old_PS_NCAH_Size_Unpress [00001300]
+The new_PS_NCAH_Size_Unpress [00001300]
+PS_NCAH diff size 00000040
+PS_NCAH old CheckSum [67ed0cbb]
+PS_NCAH new CheckSum [67ed0cbb]
+old flash address[8005a000]
+new flash address[8005a000]
+**********************USBNCAH***************************
+The old_USBNCAH_Size size [00001000]
+The new_USBNCAH_Size size [00001000]
+The old RW_REGION_LENGTH [00001000]
+The new RW_REGION_LENGTH [00001000]
+The old_USBNCAH_region_info RW_REGION_COMPRESSED_ADDR [8005b000]
+The new_USBNCAH_region_info RW_REGION_COMPRESSED_ADDR [8005b000]
+The old_USBNCAH_Size_Unpress [000002b4]
+The new_USBNCAH_Size_Unpress [000002b4]
+USBNCAH diff size 0000002c
+USBNCAH old CheckSum [90011866]
+USBNCAH new CheckSum [90011866]
+old flash address[8005b000]
+new flash address[8005b000]
+**********************CODE_PS***************************
+The old_CODE_PS_Size size [000f5000]
+The new_CODE_PS_Size size [000f5000]
+The old RW_REGION_LENGTH [000f5000]
+The new RW_REGION_LENGTH [000f5000]
+The old_CODE_PS_region_info RW_REGION_COMPRESSED_ADDR [8005c000]
+The new_CODE_PS_region_info RW_REGION_COMPRESSED_ADDR [8005c000]
+The old_CODE_PS_Size_Unpress [001ce4c8]
+The new_CODE_PS_Size_Unpress [001ce4c8]
+CODE_PS diff size 0000ae38
+CODE_PS old CheckSum [7797feca]
+CODE_PS new CheckSum [f1ee971d]
+old flash address[8005c000]
+new flash address[8005c000]
+CODE_PS oldDeviceCheckSum 7797feca
+CODE_PS newDeviceCheckSum f1ee971d
+**********************CODEPSB***************************
+The old_CODEPSB_Size size [00100000]
+The new_CODEPSB_Size size [00100000]
+The old RW_REGION_LENGTH [00100000]
+The new RW_REGION_LENGTH [00100000]
+The old_CODEPSB_region_info RW_REGION_COMPRESSED_ADDR [80151000]
+The new_CODEPSB_region_info RW_REGION_COMPRESSED_ADDR [80151000]
+The old_CODEPSB_Size_Unpress [001cb3f0]
+The old_CODEPSB_Unpress checksum [c750fdea]
+The new_CODEPSB_Size_Unpress [001cb3f0]
+The new_CODEPSB_Unpress checksum [c015b645]
+CODEPSB diff size 000099dc
+CODEPSB old CheckSum [46df6455]
+CODEPSB new CheckSum [82111f34]
+old flash address[80151000]
+new flash address[80151000]
+**********************CODE_PL***************************
+The old_CODE_PL_Size size [00104000]
+The new_CODE_PL_Size size [00106000]
+The old RW_REGION_LENGTH [00104000]
+The new RW_REGION_LENGTH [00106000]
+The old_CODE_PL_region_info RW_REGION_COMPRESSED_ADDR [80251000]
+The new_CODE_PL_region_info RW_REGION_COMPRESSED_ADDR [80251000]
+The old_CODE_PL_Size_Unpress [002189ac]
+The new_CODE_PL_Size_Unpress [0021c59c]
+CODE_PL diff size 0001e778
+CODE_PL old CheckSum [8617f6c1]
+CODE_PL new CheckSum [3d27116f]
+old flash address[80251000]
+new flash address[80251000]
+**********************DSP***************************
+The old_DSP_Size size [0010c000]
+The new_DSP_Size size [0010c000]
+The old_dsp->vsize [0010b882]
+The new_dsp->vsize [0010b882]
+The old_DSP_Unpress checksum[17dc5821]
+The new_DSP_Unpress checksum[17dc5821]
+The old_DSP_Size_Unpress [00210000]
+The new_DSP_Size_Unpress [00210000]
+The old_DSP_Unpress checksum[e7c95ff3]
+The new_DSP_Unpress checksum[e7c95ff3]
+DSP ImagesOffset 00034804
+DSP diff size 00000198
+DSP ImagesCheckSum 50b64e3a
+DSP oldDeviceCheckSum 7065ff9c
+DSP newDeviceCheckSum 7065ff9c
+**********************RF***************************
+The old_RF_Size size [0000e000]
+The new_RF_Size size [0000e000]
+RF diff size 0000006c
+**********************RESERVED***************************
+The old_RESERVED_Size [0082e000]
+The new_RESERVED_Size [0082a000]
+**********************RESERVED END***************************
+The second file ro length[00000000]
+sec file non ota address[80357000] length[00054000]
+The new_CODE_PL padding end [80357000]
+old system others part addr[004c2000] size[00000000]
+new system others part addr[004c6000] size[00000000]
+The new mini CP size[0031d000]
+RO[00000000], NON_OTA[00052000], RESERVED[0082e000], NVM[0007d000]
+error!!! The new mini CP size too larger[0031d000], ptable<-->apn[0001c000]
+adiff:  oldfile newfile patchfile
+For Mini ota<Options>
+    [-a1]:  <app1_partition_name> <app1_file_name>
+    [-a2]:  <app2_partition_name> <app2_file_name>
+	example: adiff.exe system_old.img system_new.img system_patch.bin -a1 updater updater.bin
+For Pro ota<Options>
+    [-p ]:  using Pro ota,default is mini ota
+    [-a1]:  <app1_partition_name> <old app1_file_name> <new app1_file_name>
+    [-a2]:  <app2_partition_name> <old app2_file_name> <new app2_file_name>
+    [-l fs|fp]:  the diff file in file system or fota_pkg, default is fota_pkg
+	example: adiff.exe -p system_old.img system_new.img system_patch.bin -a1 customer_app old_customer_app.bin new_customer_app.bin

@@ -1,0 +1,22 @@
+
+FROM python:3.8.3-buster
+
+CMD echo python:3.8.3-buster start
+
+RUN sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN apt clean
+RUN apt-get -y update
+
+RUN apt-get -y install lib32z1
+RUN apt-get -y install libicu-dev
+
+COPY python3_8_3_dtool_app_requirements.txt /tmp
+
+RUN pip install -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com -r /tmp/python3_8_3_dtool_app_requirements.txt
+
+# copy src
+COPY ./src/ /web-dtool-service/src/
+
+# copy uwsgi配置
+COPY dtool_uwsgi.ini /web-dtool-service/dtool_uwsgi.ini

@@ -1,0 +1,39 @@
+version: '3.2'
+
+networks: # 声明用到的网络(air_app用docker network create创建。所有app都进这个网络)
+    air_app:
+        driver: bridge
+        
+    elastic:
+        driver: bridge
+
+services:
+    dtool:
+        image: python3_8_3_dtool_app
+        
+        sysctls:
+            net.core.somaxconn: 4096
+            
+        ulimits:
+            nproc: 65535
+            nofile:
+                soft: 65535
+                hard: 65535
+        
+        networks:
+            - air_app
+
+        ports:
+            - "30030:80" # 30030可修改为你想要的端口。一般用80。
+      
+        #volumes:
+        #    - "/web-dtool-service:/web-dtool-service"
+        
+        
+        environment: # dfota 工具动态链接路径包含目录 
+            LD_LIBRARY_PATH: "/web-dtool-service/src/app/third_party/dfota/fota_8910_2"
+
+        # uwsgi启动flask框架
+        command: ["uwsgi", "--ini", "/web-dtool-service/dtool_uwsgi.ini"]
+
+    
