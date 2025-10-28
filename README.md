@@ -8,7 +8,7 @@ https://toscode.mulanos.cn/connorzhang/web-dtool-service/tree/master/
 
 这位大佬的fork里找到了源代码
 
-进行了一些优化，如果懒得自己架设，可以用我做好的  http://132.226.16.19:7882/dfota
+进行了一些优化，如果懒得自己架设，可以用我做好的  http://ota.919100.xyz/dfota
 
 ---
 下面是架设步骤：
