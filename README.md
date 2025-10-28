@@ -51,7 +51,7 @@ sudo docker compose ps
 ---
 
 接口地址
-http://你的ip:30030/api/site/dfota_diff_image
+http://你的ip:7882/api/site/dfota_diff_image
 30030可在docker-compose.yaml改为其他端口比如常用的80。
 
 form参数
