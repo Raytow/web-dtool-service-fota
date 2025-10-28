@@ -61,7 +61,10 @@ form参数
 若成功返回http 200。附带文件。
 若失败返回http 400等。带错误信息msg。
 
-
+  cd ~/web-dtool-service-fota
+  git add src/app/site/site.py
+  git commit -m "添加上传进度条显示"
+  git push origin main
 ---
 
 差分工具可执行文件在/web-dtool-service/src/app/third_party/dfota/。
