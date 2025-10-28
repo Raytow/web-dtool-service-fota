@@ -37,10 +37,10 @@ uwsgi --ini web-dtool-service/dtool_uwsgi.ini
 1. 生成镜像
 sudo docker build -f python3_8_3_dtool_app.df -t python3_8_3_dtool_app .
 
-2. 启动dtool
+2. dtool启动  
 sudo docker-compose up -d dtool
 
-3. 查看log
+3. log查看  
 sudo docker-compose logs dtool
 
 4. 查看状态
