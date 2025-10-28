@@ -2,6 +2,12 @@
 
 合宙差分包生成服务
 
+官方的差分工具太卡，做一次得5分钟。https://doc.openluat.com/chafen
+在https://toscode.mulanos.cn/connorzhang/web-dtool-service/tree/master/这位大佬的fork里找到了源代码
+进行了一些优化，如果懒得自己架设，可以用我做好的  http://132.226.16.19:7882/dfota
+
+---
+下面是架设步骤：
 代码使用flask框架
 用uwsgi直接起http服务。也可以自行配置，放在nginx之后。
 运行在linux系统
@@ -78,8 +84,10 @@ form参数
     - 每次请求时自动检查并清理旧文件
     - 只保留最新的20个版本
     - 按时间顺序删除最早的文件，避免服务器存储空间耗尽
+  - 新增：进度条显示，交互优化。
+  - 修改：缩短网址路径
 
-  保存后提交：
+保存后提交：
   git add README.md
   git commit -m "更新README：添加清理机制说明"
   git push github master
