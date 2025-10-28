@@ -175,7 +175,7 @@ def logout():
 '''
 
 
-@site_blueprint.route('/dfota_diff_image', methods = ['POST'])
+@site_blueprint.route('/dfota_diff_image', methods = ['GET', 'POST'])
 #@login_required
 def dfota_diff_image():
     dbg('dfota_diff_image')
@@ -184,6 +184,34 @@ def dfota_diff_image():
         #dfota_type = request.args.get('dfota_type', '', type = str)
         dfota_type = ""
         return gen_dfota_diff_image(dfota_type, request.files['f1'], request.files['f2'])
+    else:
+        return '''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>差分包生成工具</title>
+            <style>
+                body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+                h1 { color: #333; }
+                form { margin-top: 20px; }
+                input[type="file"] { margin: 10px 0; display: block; }
+                button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+                button:hover { background: #0056b3; }
+            </style>
+        </head>
+        <body>
+            <h1>DFOTA差分包生成工具</h1>
+            <form method="post" enctype="multipart/form-data">
+                <label>基础版本文件:</label>
+                <input type="file" name="f1" required>
+                <label>目标版本文件:</label>
+                <input type="file" name="f2" required>
+                <button type="submit">生成差分包</button>
+            </form>
+        </body>
+        </html>
+        '''
 
 def gen_dfota_diff_image(dfota_type, f1, f2):
     dfota_tool_dir = "fota_8910_2"

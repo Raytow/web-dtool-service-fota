@@ -64,8 +64,13 @@ def create_app(config_name):
         session.init_app(app)
     
     from app.site.site import site_blueprint
-    
+    from flask import redirect
+
     app.register_blueprint(site_blueprint, url_prefix = '/site')
-    
+
+    @app.route('/')
+    def index():
+        return redirect('/site/')
+
     print('create_app() ok')
     return app
