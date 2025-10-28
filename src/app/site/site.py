@@ -201,8 +201,9 @@ def dfota_diff_image():
                 button:disabled { background: #6c757d; cursor: not-allowed; }
                 #downloadBtn { display: none; background: #28a745; }
                 #downloadBtn:hover { background: #218838; }
-                #progress { display: none; width: 100%; height: 20px; margin: 10px 0; }
-                #progressBar { width: 0%; height: 100%; background: #007bff; transition: width 0.3s; }
+                #progress { display: none; width: 100%; height: 20px; margin: 10px 0; background: #e9ecef; border-radius: 4px; position: relative; }
+                #progressBar { width: 0%; height: 100%; background: #007bff; transition: width 0.3s; border-radius: 4px; }
+                #progressText { position: absolute; width: 100%; text-align: center; line-height: 20px; font-size: 12px; color: #333; }
             </style>
         </head>
         <body>
@@ -214,7 +215,7 @@ def dfota_diff_image():
                 <input type="file" name="f2" id="f2" required>
                 <button type="submit" id="submitBtn">生成差分包</button>
                 <button type="button" id="downloadBtn">下载</button>
-                <div id="progress"><div id="progressBar"></div></div>
+                <div id="progress"><div id="progressBar"></div><div id="progressText">0%</div></div>
             </form>
             <script>
                 let diffBlob = null;
@@ -224,6 +225,7 @@ def dfota_diff_image():
                 const downloadBtn = document.getElementById('downloadBtn');
                 const progress = document.getElementById('progress');
                 const progressBar = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
 
                 form.onsubmit = async (e) => {
                     e.preventDefault();
@@ -236,8 +238,9 @@ def dfota_diff_image():
 
                     xhr.upload.onprogress = (e) => {
                         if (e.lengthComputable) {
-                            const percent = (e.loaded / e.total) * 100;
+                            const percent = Math.round((e.loaded / e.total) * 100);
                             progressBar.style.width = percent + '%';
+                            progressText.textContent = percent + '%';
                         }
                     };
 
