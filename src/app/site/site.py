@@ -213,7 +213,25 @@ def dfota_diff_image():
         </html>
         '''
 
+def cleanup_old_dfota_files(keep_count=20):
+    try:
+        items = []
+        for item in os.listdir(config.SITE_DFOTA_DIR):
+            item_path = os.path.join(config.SITE_DFOTA_DIR, item)
+            if os.path.isdir(item_path):
+                items.append((os.path.getmtime(item_path), item_path))
+
+        items.sort(reverse=True)
+
+        for _, path in items[keep_count:]:
+            shutil.rmtree(path)
+            dbg(f"Deleted old directory: {path}")
+    except:
+        tool.print_exception_info()
+
 def gen_dfota_diff_image(dfota_type, f1, f2):
+    cleanup_old_dfota_files(20)
+
     dfota_tool_dir = "fota_8910_2"
 
     file_type = 1
