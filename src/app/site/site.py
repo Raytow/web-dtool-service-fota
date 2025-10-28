@@ -198,17 +198,61 @@ def dfota_diff_image():
                 input[type="file"] { margin: 10px 0; display: block; }
                 button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; }
                 button:hover { background: #0056b3; }
+                button:disabled { background: #6c757d; cursor: not-allowed; }
+                #downloadBtn { display: none; background: #28a745; }
+                #downloadBtn:hover { background: #218838; }
             </style>
         </head>
         <body>
             <h1>DFOTA差分包生成工具</h1>
-            <form method="post" enctype="multipart/form-data">
+            <form id="uploadForm" enctype="multipart/form-data">
                 <label>基础版本文件:</label>
-                <input type="file" name="f1" required>
+                <input type="file" name="f1" id="f1" required>
                 <label>目标版本文件:</label>
-                <input type="file" name="f2" required>
-                <button type="submit">生成差分包</button>
+                <input type="file" name="f2" id="f2" required>
+                <button type="submit" id="submitBtn">生成差分包</button>
+                <button type="button" id="downloadBtn">下载</button>
             </form>
+            <script>
+                let diffBlob = null;
+                let filename = '';
+                const form = document.getElementById('uploadForm');
+                const submitBtn = document.getElementById('submitBtn');
+                const downloadBtn = document.getElementById('downloadBtn');
+
+                form.onsubmit = async (e) => {
+                    e.preventDefault();
+                    submitBtn.textContent = '生成中...';
+                    submitBtn.disabled = true;
+
+                    const formData = new FormData(form);
+                    try {
+                        const res = await fetch('/site/dfota_diff_image', { method: 'POST', body: formData });
+                        if (res.ok) {
+                            diffBlob = await res.blob();
+                            filename = res.headers.get('x-filename') || 'dfota.bin';
+                            submitBtn.style.display = 'none';
+                            downloadBtn.style.display = 'inline-block';
+                        } else {
+                            alert('生成失败');
+                            submitBtn.textContent = '生成差分包';
+                            submitBtn.disabled = false;
+                        }
+                    } catch (err) {
+                        alert('生成失败: ' + err);
+                        submitBtn.textContent = '生成差分包';
+                        submitBtn.disabled = false;
+                    }
+                };
+
+                downloadBtn.onclick = () => {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(diffBlob);
+                    a.download = filename;
+                    a.click();
+                    location.reload();
+                };
+            </script>
         </body>
         </html>
         '''
