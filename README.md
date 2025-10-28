@@ -38,13 +38,13 @@ uwsgi --ini web-dtool-service/dtool_uwsgi.ini
 sudo docker build -f python3_8_3_dtool_app.df -t python3_8_3_dtool_app .
 
 2. dtool启动  
-sudo docker-compose up -d dtool
+sudo docker compose up -d dtool
 
 3. log查看  
-sudo docker-compose logs dtool
+sudo docker compose logs dtool
 
 4. 查看状态  
-sudo docker-compose ps
+sudo docker compose ps
 
 如果state是UP说明已经跑起来了。
 
