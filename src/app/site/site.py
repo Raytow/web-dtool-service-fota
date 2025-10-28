@@ -201,6 +201,8 @@ def dfota_diff_image():
                 button:disabled { background: #6c757d; cursor: not-allowed; }
                 #downloadBtn { display: none; background: #28a745; }
                 #downloadBtn:hover { background: #218838; }
+                #progress { display: none; width: 100%; height: 20px; margin: 10px 0; }
+                #progressBar { width: 0%; height: 100%; background: #007bff; transition: width 0.3s; }
             </style>
         </head>
         <body>
@@ -212,6 +214,7 @@ def dfota_diff_image():
                 <input type="file" name="f2" id="f2" required>
                 <button type="submit" id="submitBtn">生成差分包</button>
                 <button type="button" id="downloadBtn">下载</button>
+                <div id="progress"><div id="progressBar"></div></div>
             </form>
             <script>
                 let diffBlob = null;
@@ -219,30 +222,50 @@ def dfota_diff_image():
                 const form = document.getElementById('uploadForm');
                 const submitBtn = document.getElementById('submitBtn');
                 const downloadBtn = document.getElementById('downloadBtn');
+                const progress = document.getElementById('progress');
+                const progressBar = document.getElementById('progressBar');
 
                 form.onsubmit = async (e) => {
                     e.preventDefault();
-                    submitBtn.textContent = '生成中...';
+                    submitBtn.textContent = '上传中...';
                     submitBtn.disabled = true;
+                    progress.style.display = 'block';
 
                     const formData = new FormData(form);
-                    try {
-                        const res = await fetch('/site/dfota_diff_image', { method: 'POST', body: formData });
-                        if (res.ok) {
-                            diffBlob = await res.blob();
-                            filename = res.headers.get('x-filename') || 'dfota.bin';
+                    const xhr = new XMLHttpRequest();
+
+                    xhr.upload.onprogress = (e) => {
+                        if (e.lengthComputable) {
+                            const percent = (e.loaded / e.total) * 100;
+                            progressBar.style.width = percent + '%';
+                        }
+                    };
+
+                    xhr.onload = () => {
+                        if (xhr.status === 200) {
+                            diffBlob = xhr.response;
+                            filename = xhr.getResponseHeader('x-filename') || 'dfota.bin';
+                            progress.style.display = 'none';
                             submitBtn.style.display = 'none';
                             downloadBtn.style.display = 'inline-block';
                         } else {
                             alert('生成失败');
                             submitBtn.textContent = '生成差分包';
                             submitBtn.disabled = false;
+                            progress.style.display = 'none';
                         }
-                    } catch (err) {
-                        alert('生成失败: ' + err);
+                    };
+
+                    xhr.onerror = () => {
+                        alert('生成失败');
                         submitBtn.textContent = '生成差分包';
                         submitBtn.disabled = false;
-                    }
+                        progress.style.display = 'none';
+                    };
+
+                    xhr.open('POST', '/site/dfota_diff_image');
+                    xhr.responseType = 'blob';
+                    xhr.send(formData);
                 };
 
                 downloadBtn.onclick = () => {
