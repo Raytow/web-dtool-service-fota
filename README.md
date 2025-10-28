@@ -55,7 +55,7 @@ http://你的ip:7882/api/site/dfota_diff_image
 30030可在docker-compose.yaml改为其他端口比如常用的80。
 
 form参数
-两个文件。文件名为f1和f2。
+两个文件。文件名为f1和f2。   
 
 返回
 若成功返回http 200。附带文件。
