@@ -70,7 +70,11 @@ def create_app(config_name):
 
     @app.route('/')
     def index():
-        return redirect('/site/')
+        return redirect('/dfota')
+
+    @app.route('/dfota')
+    def dfota():
+        return redirect('/site/dfota_diff_image')
 
     print('create_app() ok')
     return app
