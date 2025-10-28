@@ -468,7 +468,7 @@ def gen_dfota_diff_image(dfota_type, f1, f2):
                 # 组成最终bin文件
                 # see opebluat -> gen_dfota_final_bin
 
-                final_bin_name = 'dfota_final_%s_%s_%s.bin' % (base_file_name[:6], target_file_name[:6], time_string)
+                final_bin_name = f2.filename.rsplit('.', 1)[0] + '_dfota.bin'
                 final_bin_path = config.SITE_DFOTA_DIR + final_bin_name
                 file_bin_data = None
 
