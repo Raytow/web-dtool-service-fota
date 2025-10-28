@@ -12,8 +12,11 @@ https://toscode.mulanos.cn/connorzhang/web-dtool-service/tree/master/
 
 ---
 下面是架设步骤：
+
 代码使用flask框架
+
 用uwsgi直接起http服务。也可以自行配置，放在nginx之后。
+
 运行在linux系统
 
 ---
@@ -31,11 +34,13 @@ dtool_uwsgi.ini是uwsgi配置
 ---
 
 用户可以自行安装python库，自己运行服务。
+
 安装环境参考上述配置文件。
 
 pip3 install -i https://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com -r python3_8_3_dtool_app_requirements.txt
 
 安装完后运行
+
 uwsgi --ini web-dtool-service/dtool_uwsgi.ini
 
 ---
@@ -61,23 +66,33 @@ sudo docker compose ps
 ---
 
 接口地址
+
 http://你的ip:7882/api/site/dfota_diff_image
-30030可在docker-compose.yaml改为其他端口比如常用的80。
+
+7882可在docker-compose.yaml改为其他端口比如常用的80。
 
 form参数
+
 两个文件。文件名为f1和f2。   
 
 返回
+
 若成功返回http 200。附带文件。
+
 若失败返回http 400等。带错误信息msg。
 
   cd ~/web-dtool-service-fota
+
   git add src/app/site/site.py
+
   git commit -m "添加上传进度条显示"
+
   git push origin main
+
 ---
 
 差分工具可执行文件在/web-dtool-service/src/app/third_party/dfota/。
+
 需要设置为可执行。
 
 ---
