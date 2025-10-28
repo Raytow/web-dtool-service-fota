@@ -24,7 +24,7 @@ services:
             - air_app
 
         ports:
-            - "30030:80" # 30030可修改为你想要的端口。一般用80。
+            - "7882:80" # 30030可修改为你想要的端口。一般用80。
       
         #volumes:
         #    - "/web-dtool-service:/web-dtool-service"
@@ -35,5 +35,6 @@ services:
 
         # uwsgi启动flask框架
         command: ["uwsgi", "--ini", "/web-dtool-service/dtool_uwsgi.ini"]
+
 
     
