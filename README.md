@@ -3,7 +3,11 @@
 合宙差分包生成服务
 
 官方的差分工具太卡，做一次得5分钟。https://doc.openluat.com/chafen
-在https://toscode.mulanos.cn/connorzhang/web-dtool-service/tree/master/这位大佬的fork里找到了源代码
+
+https://toscode.mulanos.cn/connorzhang/web-dtool-service/tree/master/
+
+这位大佬的fork里找到了源代码
+
 进行了一些优化，如果懒得自己架设，可以用我做好的  http://132.226.16.19:7882/dfota
 
 ---
