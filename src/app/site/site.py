@@ -192,31 +192,45 @@ def dfota_diff_image():
             <meta charset="UTF-8">
             <title>差分包生成工具</title>
             <style>
-                body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-                h1 { color: #333; }
-                form { margin-top: 20px; }
-                input[type="file"] { margin: 10px 0; display: block; }
-                button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; }
-                button:hover { background: #0056b3; }
-                button:disabled { background: #6c757d; cursor: not-allowed; }
-                #downloadBtn { display: none; background: #28a745; }
-                #downloadBtn:hover { background: #218838; }
-                #progress { display: none; width: 100%; height: 20px; margin: 10px 0; background: #e9ecef; border-radius: 4px; position: relative; }
-                #progressBar { width: 0%; height: 100%; background: #007bff; transition: width 0.3s; border-radius: 4px; }
-                #progressText { position: absolute; width: 100%; text-align: center; line-height: 20px; font-size: 12px; color: #333; }
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body { font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+                .container { background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 40px; max-width: 500px; width: 90%; }
+                h1 { color: #333; font-size: 28px; margin-bottom: 30px; text-align: center; }
+                .file-group { margin-bottom: 25px; }
+                label { display: block; color: #555; font-weight: 500; margin-bottom: 8px; font-size: 14px; }
+                input[type="file"] { width: 100%; padding: 12px; border: 2px dashed #ddd; border-radius: 8px; cursor: pointer; font-size: 14px; transition: border-color 0.3s; }
+                input[type="file"]:hover { border-color: #007bff; }
+                .btn-group { display: flex; gap: 10px; margin-top: 30px; }
+                button { flex: 1; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+                #submitBtn { background: #007bff; color: white; }
+                #submitBtn:hover { background: #0056b3; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,123,255,0.3); }
+                #submitBtn:disabled { background: #6c757d; cursor: not-allowed; transform: none; }
+                #downloadBtn { display: none; background: #28a745; color: white; }
+                #downloadBtn:hover { background: #218838; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(40,167,69,0.3); }
+                #progress { display: none; width: 100%; height: 30px; background: #e9ecef; border-radius: 15px; position: relative; overflow: hidden; margin-top: 20px; }
+                #progressBar { width: 0%; height: 100%; background: linear-gradient(90deg, #007bff, #0056b3); transition: width 0.3s; }
+                #progressText { position: absolute; width: 100%; text-align: center; line-height: 30px; font-size: 14px; font-weight: 600; color: #333; }
             </style>
         </head>
         <body>
-            <h1>DFOTA差分包生成工具</h1>
-            <form id="uploadForm" enctype="multipart/form-data">
-                <label>基础版本文件:</label>
-                <input type="file" name="f1" id="f1" required>
-                <label>目标版本文件:</label>
-                <input type="file" name="f2" id="f2" required>
-                <button type="submit" id="submitBtn">生成差分包</button>
-                <button type="button" id="downloadBtn">下载</button>
-                <div id="progress"><div id="progressBar"></div><div id="progressText">0%</div></div>
-            </form>
+            <div class="container">
+                <h1>DFOTA差分包生成工具</h1>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="file-group">
+                        <label>基础版本文件</label>
+                        <input type="file" name="f1" id="f1" required>
+                    </div>
+                    <div class="file-group">
+                        <label>目标版本文件</label>
+                        <input type="file" name="f2" id="f2" required>
+                    </div>
+                    <div id="progress"><div id="progressBar"></div><div id="progressText">0%</div></div>
+                    <div class="btn-group">
+                        <button type="submit" id="submitBtn">生成差分包</button>
+                        <button type="button" id="downloadBtn">下载</button>
+                    </div>
+                </form>
+            </div>
             <script>
                 let diffBlob = null;
                 let filename = '';
